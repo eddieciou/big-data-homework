@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './containers/HomePage';
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 }
 
