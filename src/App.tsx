@@ -5,6 +5,7 @@ import { AiOutlineSetting } from 'react-icons/ai';
 
 import HomePage from './containers/HomePage';
 import ResultPage from './containers/ResultPage';
+import CommonPage from './containers/CommonPage';
 
 function App() {
   return (
@@ -18,10 +19,14 @@ function App() {
           <p className="brand absolute -left-5 top-0 text-[190px] font-bold leading-none tracking-[0.18em]">TAIWAN</p>
         </div>
         <div className="flex w-full justify-center sm:w-[90%] sm:overflow-y-scroll">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/:year/:county/:town" element={<ResultPage />} />
-          </Routes>
+          <div className="flex w-full flex-col items-center py-4 sm:w-[77%]">
+            <CommonPage />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/:year/:county/:town" element={<ResultPage />} />
+            </Routes>
+          </div>
+
         </div>
       </div>
     </div>
