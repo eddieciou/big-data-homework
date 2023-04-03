@@ -16,7 +16,7 @@ function App() {
       </header>
       <div className="flex h-full grow overflow-y-scroll sm:overflow-hidden">
         <div className="relative w-0 sm:w-[10%]">
-          <p className="brand absolute -left-5 top-0 text-[190px] font-bold leading-none tracking-[0.18em]">TAIWAN</p>
+          <p className="brand absolute -left-5 top-0 -z-10 select-none text-[190px] font-bold leading-none tracking-[0.18em]">TAIWAN</p>
         </div>
         <div className="flex w-full justify-center sm:w-[90%] sm:overflow-y-scroll">
           <div className="flex w-full flex-col items-center py-4 sm:w-[77%]">
