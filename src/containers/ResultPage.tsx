@@ -6,7 +6,7 @@ function ResultPage() {
 
   return (
     <div className="mt-12">
-      {`${year} 年 ${county} ${town}`}
+      <div className="text-[25px]">{`${year}年 ${county} ${town}`}</div>
     </div>
   );
 }

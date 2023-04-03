@@ -1,4 +1,4 @@
-export type TCounty = '基隆市' | '台北市' | '新北市' | '桃園市' | '新竹市' | '新竹縣' | '苗栗縣' | '台中市' | '彰化縣' | '南投縣' | '雲林縣' | '嘉義市' | '嘉義縣' | '台南市' | '高雄市' | '屏東縣' | '台東縣' | '花蓮縣' | '宜蘭縣' | '澎湖縣' | '金門縣' | '連江縣';
+export type TCounty = '基隆市' | '臺北市' | '新北市' | '桃園市' | '新竹市' | '新竹縣' | '苗栗縣' | '台中市' | '彰化縣' | '南投縣' | '雲林縣' | '嘉義市' | '嘉義縣' | '台南市' | '高雄市' | '屏東縣' | '台東縣' | '花蓮縣' | '宜蘭縣' | '澎湖縣' | '金門縣' | '連江縣';
 
 const YEAR_LIST = [
   { title: '106', value: '106' },
@@ -11,7 +11,7 @@ const YEAR_LIST = [
 
 export const COUNTY_LIST:Array<{ title:TCounty, value:string }> = [
   { title: '基隆市', value: '基隆市' },
-  { title: '台北市', value: '台北市' },
+  { title: '臺北市', value: '臺北市' },
   { title: '新北市', value: '新北市' },
   { title: '桃園市', value: '桃園市' },
   { title: '新竹市', value: '新竹市' },
@@ -36,7 +36,7 @@ export const COUNTY_LIST:Array<{ title:TCounty, value:string }> = [
 
 export const TOWN_MAP:{ [key in TCounty]:Array<{ title:string, value:string }> } = {
   基隆市: [{ title: '仁愛區', value: '仁愛區' }, { title: '中正區', value: '中正區' }, { title: '信義區', value: '信義區' }, { title: '中山區', value: '中山區' }, { title: '安樂區', value: '安樂區' }, { title: '暖暖區', value: '暖暖區' }, { title: '七堵區', value: '七堵區' }],
-  台北市: [{ title: '中正區', value: '中正區' }, { title: '大同區', value: '大同區' }, { title: '中山區', value: '中山區' }, { title: '萬華區', value: '萬華區' }, { title: '信義區', value: '信義區' }, { title: '松山區', value: '松山區' }, { title: '大安區', value: '大安區' }, { title: '南港區', value: '南港區' }, { title: '北投區', value: '北投區' }, { title: '內湖區', value: '內湖區' }, { title: '士林區', value: '士林區' }, { title: '文山區', value: '文山區' }],
+  臺北市: [{ title: '中正區', value: '中正區' }, { title: '大同區', value: '大同區' }, { title: '中山區', value: '中山區' }, { title: '萬華區', value: '萬華區' }, { title: '信義區', value: '信義區' }, { title: '松山區', value: '松山區' }, { title: '大安區', value: '大安區' }, { title: '南港區', value: '南港區' }, { title: '北投區', value: '北投區' }, { title: '內湖區', value: '內湖區' }, { title: '士林區', value: '士林區' }, { title: '文山區', value: '文山區' }],
   新北市: [{ title: '板橋區', value: '板橋區' }, { title: '新莊區', value: '新莊區' }, { title: '泰山區', value: '泰山區' }, { title: '林口區', value: '林口區' }, { title: '淡水區', value: '淡水區' }, { title: '金山區', value: '金山區' }, { title: '八里區', value: '八里區' }, { title: '萬里區', value: '萬里區' }, { title: '石門區', value: '石門區' }, { title: '三芝區', value: '三芝區' }, { title: '瑞芳區', value: '瑞芳區' }, { title: '汐止區', value: '汐止區' }, { title: '平溪區', value: '平溪區' }, { title: '貢寮區', value: '貢寮區' }, { title: '雙溪區', value: '雙溪區' }, { title: '深坑區', value: '深坑區' }, { title: '石碇區', value: '石碇區' }, { title: '新店區', value: '新店區' }, { title: '坪林區', value: '坪林區' }, { title: '烏來區', value: '烏來區' }, { title: '中和區', value: '中和區' }, { title: '永和區', value: '永和區' }, { title: '土城區', value: '土城區' }, { title: '三峽區', value: '三峽區' }, { title: '樹林區', value: '樹林區' }, { title: '鶯歌區', value: '鶯歌區' }, { title: '三重區', value: '三重區' }, { title: '蘆洲區', value: '蘆洲區' }, { title: '五股區', value: '五股區' }],
   桃園市: [{ title: '桃園區', value: '桃園區' }, { title: '中壢區', value: '中壢區' }, { title: '平鎮區', value: '平鎮區' }, { title: '八德區', value: '八德區' }, { title: '楊梅區', value: '楊梅區' }, { title: '蘆竹區', value: '蘆竹區' }, { title: '龜山區', value: '龜山區' }, { title: '龍潭區', value: '龍潭區' }, { title: '大溪區', value: '大溪區' }, { title: '大園區', value: '大園區' }, { title: '觀音區', value: '觀音區' }, { title: '新屋區', value: '新屋區' }, { title: '復興區', value: '復興區' }],
   新竹市: [{ title: '東區', value: '東區' }, { title: '北區', value: '北區' }, { title: '香山區', value: '香山區' }],
