@@ -14,7 +14,6 @@ function CommonPage() {
   const buttonDisabled = !county || !town;
 
   const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
-    console.log(`/${year}/${county}/${town}`);
     e.preventDefault();
     navigate(`/${year}/${county}/${town}`);
   };
