@@ -23,12 +23,11 @@ interface ISelectorProps {
 function Selector({
   placeholder, small, label, disablePlaceholder, disable, chooseList, value, onChange, clearAble,
 }:ISelectorProps) {
-  const [selectValue, setSelectValue] = useState(value);
   const [dropDown, setDropDown] = useState(false);
 
   const getTitle = () => {
     if (chooseList.length > 0) {
-      const result = chooseList.find((part) => part.value === selectValue);
+      const result = chooseList.find((part) => part.value === value);
       return result?.title;
     }
     return '';
@@ -56,7 +55,6 @@ function Selector({
           onClick={
             (event) => {
               event.stopPropagation();
-              setSelectValue('');
               onChange('');
             }
         }
@@ -72,7 +70,6 @@ function Selector({
               className="px-4 py-1"
               onClick={() => {
                 onChange(part.value);
-                setSelectValue(part.value);
               }}
               aria-hidden="true"
             >
