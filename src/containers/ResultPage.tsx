@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
-import { select } from 'd3-selection';
+import { select } from 'd3';
 
 type TAPIResult = {
   responseData:Array<{
