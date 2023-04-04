@@ -45,8 +45,9 @@ function Selector({
       type="button"
       className={`relative flex h-[36.5px] items-center justify-between rounded border border-[#B6B6B6] bg-white pl-[12px] pr-[8px] pt-[10px] text-[16px] ${small ? 'w-[73px]' : 'w-full sm:w-[165px]'} `}
       onClick={() => {
-        if (!disable && !textKeying) {
+        if (!disable) {
           setDropDown(!dropDown);
+          setTextKeying(!textKeying);
         }
       }}
       onBlur={() => setDropDown(false)}
@@ -93,6 +94,7 @@ function Selector({
               onClick={() => {
                 onChange(part.value);
                 setTextKeying(false);
+                setDropDown(false);
               }}
               aria-hidden="true"
             >
