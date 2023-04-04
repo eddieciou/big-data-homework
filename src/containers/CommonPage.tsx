@@ -29,7 +29,6 @@ function CommonPage() {
           value={county}
           onChange={(value) => {
             if (value !== county || value === '') {
-              console.log('RRRR');
               setTown('');
             }
             setCounty(value as TCounty);
@@ -40,7 +39,7 @@ function CommonPage() {
         <Selector label="區" chooseList={county ? TOWN_MAP[county] : []} value={town} placeholder="請選擇區" onChange={(value) => setTown(value)} disable={!county} clearAble={!!town} disablePlaceholder="請先選擇 縣/市" />
         <button type="submit" className={`h-[36.5px] w-full rounded  px-4 py-[6px] text-[14px] font-bold leading-none  sm:w-[83px] ${buttonDisabled ? 'bg-black bg-opacity-[12%] text-black text-opacity-[26%]' : 'bg-[#651FFF] text-white'}`} disabled={buttonDisabled}>SUBMIT</button>
       </form>
-      <Divider title="搜尋結果" color="#B388FF" />
+      <Divider title="搜尋結果" />
     </div>
   );
 }
