@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 import {
@@ -51,6 +51,8 @@ function ResultPage() {
     ordinaryM: 0, ordinaryF: 0, singleM: 0, singleF: 0, ordinaryTotal: 0, singleTotal: 0,
   });
 
+  const windowWidth = useRef(window.innerWidth);
+
   if (isLoading) return <div />;
 
   const barChartData = {
@@ -61,77 +63,77 @@ function ResultPage() {
         label: '男性',
         backgroundColor: '#7C5FB1',
         fill: true,
-        categoryPercentage: 0.3,
-        barPercentage: 0.8,
+        categoryPercentage: windowWidth.current > 640 ? 0.3 : 0.3,
+        barPercentage: windowWidth.current > 640 ? 0.8 : 0.8,
       },
       {
         data: [result?.ordinaryF, result?.singleF],
         label: '女性',
         backgroundColor: '#C29EFE',
         fill: true,
-        categoryPercentage: 0.3,
-        barPercentage: 0.8,
+        categoryPercentage: windowWidth.current > 640 ? 0.3 : 0.3,
+        barPercentage: windowWidth.current > 640 ? 0.8 : 0.8,
       },
     ],
   };
 
   return (
-    <div className="mt-12 flex w-full flex-col items-center gap-12">
+    <div className="mt-12 flex w-full flex-col items-center gap-12 px-1">
       <div className="text-[25px]">{`${year}年 ${county} ${town}`}</div>
       <div className="text-center text-3xl">人口數統計</div>
       <div className="-mb-10 w-full">數量</div>
-      <div className="flex h-fit w-[95%] justify-center sm:w-full">
-        <Bar
-          data={barChartData}
-          plugins={[ChartDataLabels]}
-          options={{
-            plugins: {
-              datalabels: {
+      <Bar
+        height={windowWidth.current > 640 ? 70 : 100}
+        width={130}
+        data={barChartData}
+        plugins={[ChartDataLabels]}
+        options={{
+          plugins: {
+            datalabels: {
+              font: {
+                size: windowWidth.current > 640 ? 20 : 10,
+              },
+              anchor: 'end',
+              align: 'top',
+              formatter(value:number) {
+                return value.toLocaleString();
+              },
+            },
+            legend: {
+              position: 'bottom',
+              labels: {
+                usePointStyle: true,
+                pointStyle: 'circle',
+              },
+            },
+          },
+          scales: {
+            y: {
+              ticks: {
+                callback(label:number | string) {
+                  return `${label as number / 1000}k`;
+                },
+              },
+              border: {
+                display: false,
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: '型態',
                 font: {
-                  size: 10,
-                },
-                anchor: 'end',
-                align: 'top',
-                formatter(value:number) {
-                  return value.toLocaleString();
+                  size: 16,
                 },
               },
-              legend: {
-                position: 'bottom',
-                labels: {
-                  usePointStyle: true,
-                  pointStyle: 'circle',
-                },
+              grid: {
+                display: false,
               },
             },
-            scales: {
-              y: {
-                ticks: {
-                  callback(label:number | string) {
-                    return `${label as number / 1000}k`;
-                  },
-                },
-                border: {
-                  display: false,
-                },
-              },
-              x: {
-                title: {
-                  display: true,
-                  text: '型態',
-                  font: {
-                    size: 16,
-                  },
-                },
-                grid: {
-                  display: false,
-                },
-              },
 
-            },
-          }}
-        />
-      </div>
+          },
+        }}
+      />
       <div>{`共同生活_男: ${result?.ordinaryM}`}</div>
       <div>{`共同生活_女: ${result?.ordinaryF}`}</div>
       <div>{`獨立生活_男: ${result?.singleM}`}</div>
