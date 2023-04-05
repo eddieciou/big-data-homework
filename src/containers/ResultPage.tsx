@@ -9,9 +9,11 @@ import {
   Title,
   Tooltip,
   Legend,
+  ArcElement,
+  Plugin,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Bar, Pie } from 'react-chartjs-2';
+import ChartDataLabels, { Context } from 'chartjs-plugin-datalabels';
 
 ChartJS.register(
   CategoryScale,
@@ -20,6 +22,8 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  ArcElement,
+  ChartDataLabels,
 );
 
 type TAPIResult = {
@@ -63,7 +67,7 @@ function ResultPage() {
         label: '男性',
         backgroundColor: '#7C5FB1',
         fill: true,
-        categoryPercentage: windowWidth.current > 640 ? 0.3 : 0.3,
+        categoryPercentage: windowWidth.current > 640 ? 0.3 : 0.4,
         barPercentage: windowWidth.current > 640 ? 0.8 : 0.8,
       },
       {
@@ -71,14 +75,64 @@ function ResultPage() {
         label: '女性',
         backgroundColor: '#C29EFE',
         fill: true,
-        categoryPercentage: windowWidth.current > 640 ? 0.3 : 0.3,
+        categoryPercentage: windowWidth.current > 640 ? 0.3 : 0.4,
         barPercentage: windowWidth.current > 640 ? 0.8 : 0.8,
       },
     ],
   };
 
+  const pieChartData = {
+    labels: ['共同生活', '獨立生活'],
+    datasets: [{
+      data: [result?.ordinaryTotal, result?.singleTotal],
+      backgroundColor: [
+        '#616EB2',
+        '#A4B1FF',
+      ],
+      borderColor: [
+        '#FFFFFF',
+        '#FFFFFF',
+      ],
+      borderWidth: 1,
+    }],
+  };
+
+  const pieOptions = {
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+        labels: {
+          fontColor: 'white',
+          boxWidth: 20,
+          padding: 20,
+          usePointStyle: true,
+          pointStyle: 'circle',
+        },
+      },
+      datalabels: {
+        formatter: (value:number, ctx:Context) => {
+          const dataPoints = ctx.chart.data.datasets[0].data;
+          const totalValue = dataPoints
+            .reduce((total, dataPoint) => total as number + (dataPoint as number), 0);
+          const percentageValue = ((value / (totalValue as number)) * 100).toFixed(2);
+          return `${percentageValue} %`;
+        },
+        color: '#000',
+        font: {
+          size: 16,
+        },
+        anchor: 'end' as const,
+        align: 'end' as const,
+        offset: 20,
+      },
+    },
+    layout: {
+      padding: windowWidth.current > 640 ? 50 : 70,
+    },
+  };
+
   return (
-    <div className="mt-12 flex w-full flex-col items-center gap-12 px-1">
+    <div className="mt-12 flex w-full flex-col items-center gap-12 px-1 pb-10">
       <div className="text-[25px]">{`${year}年 ${county} ${town}`}</div>
       <div className="text-center text-3xl">人口數統計</div>
       <div className="-mb-10 w-full">數量</div>
@@ -130,16 +184,17 @@ function ResultPage() {
                 display: false,
               },
             },
-
           },
         }}
       />
-      <div>{`共同生活_男: ${result?.ordinaryM}`}</div>
-      <div>{`共同生活_女: ${result?.ordinaryF}`}</div>
-      <div>{`獨立生活_男: ${result?.singleM}`}</div>
-      <div>{`獨立生活_女: ${result?.singleF}`}</div>
-      <div>{`共同生活(戶): ${result?.ordinaryTotal}`}</div>
-      <div>{`獨立生活(戶): ${result?.singleTotal}`}</div>
+      <div className="text-center text-3xl">戶數統計</div>
+      <div className="w-full sm:w-[60%]">
+        <Pie
+          data={pieChartData}
+          options={pieOptions}
+          plugins={[ChartDataLabels as Plugin<'pie'>]}
+        />
+      </div>
     </div>
   );
 }
